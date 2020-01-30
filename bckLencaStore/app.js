@@ -21,7 +21,10 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+var apiRouter = require('./routes/api/api');
+
 app.use('/', indexRouter);
+app.use('/api', apiRouter);
 
 
 // catch 404 and forward to error handler
