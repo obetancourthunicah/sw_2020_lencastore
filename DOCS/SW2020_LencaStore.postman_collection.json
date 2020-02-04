@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "d338c6fd-1e8c-4736-a8e2-95892cf3a6a0",
+		"name": "SW2020_LencaStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Seguridad",
+			"item": [
+				{
+					"name": "/api/seguridad/users/all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/seguridad/users/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seguridad",
+								"users",
+								"all"
+							]
+						},
+						"description": "Obiene todos los nodos de ususuarios registrador"
+					},
+					"response": []
+				},
+				{
+					"name": "/api/seguridad/users/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/seguridad/users/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seguridad",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						},
+						"description": "Obtiene un Usuario por Código ID"
+					},
+					"response": []
+				},
+				{
+					"name": "api/seguridad/users/new",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "useremail",
+									"value": "obetancourthunicah@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "userpswd",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "usernames",
+									"value": "Orlando Betancourth",
+									"type": "text"
+								},
+								{
+									"key": "lerolero",
+									"value": "Lero Candelero",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/seguridad/users/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seguridad",
+								"users",
+								"new"
+							]
+						},
+						"description": "Agrega nuevo Usuario a la tupla de usuarios"
+					},
+					"response": []
+				},
+				{
+					"name": "i/seguridad/users/upd/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userpswd",
+									"value": "NuevoPswd",
+									"type": "text"
+								},
+								{
+									"key": "usernames",
+									"value": "Fulanito De Meganito de Tal",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/seguridad/users/upd/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seguridad",
+								"users",
+								"upd",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Actualia un Usuario por Codigo"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
