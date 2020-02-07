@@ -166,6 +166,36 @@
 						"description": "Actualia un Usuario por Codigo"
 					},
 					"response": []
+				},
+				{
+					"name": "/seguridad/users/del/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/seguridad/users/del/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"seguridad",
+								"users",
+								"del",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Elimina el registro identificado por el id"
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
