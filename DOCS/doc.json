@@ -1,0 +1,55 @@
+//JSON Javascript Object Notation 
+
+// json.org
+
+{}
+
+[]
+
+{
+  "llave" : "cadena",
+  "llave1": 1232,
+  "llave2": false,
+  "llave3": null,
+  "llave4": {},
+  "llave5": []
+}
+
+{
+  _id:"123adflkj12309908098",
+  "paciente": {
+    "firstName":"Orlando",
+    "lastName": "Betancourth",
+    "edad": 35,
+    "email":"obetancourthunicah@gmail.com",
+    "phones":[99999999,33333333]
+  },
+  "historiaMedica": [
+    {"fecha":"20190501" ,
+      "presionA": 80,
+      "presionD": 120,
+      "temperaturaDeg": 36.3,
+      "pesoKg": 200,
+      "estaturaCm": 176,
+      "medico":{
+        "colegiacion":123123,
+        "nombre":"Dr. Abc de Fgh",
+        "especialidad": "Neurologo",
+        "observaciones":["abcd acdllela","asdfaasdfo jkadflk"],
+        "diagnostico":{
+          "cie10":"PR404",
+          "cieDsc":"Purpura",
+          "HistoriaClinica": "asdfasdf asdfasdf asdf asdf asdf asdf ads "
+        }
+        "examenes":[
+          {"tipo":"hemograma completo", "status":"Pendiente", "observacion":""},
+          {"tipo":"ANA Reactivo", "status":"Pendiente", "observacion":""}
+        ],
+        "recetas":[
+          {"medicamento":"migradorixina", "dosis":" 1 tableta cada 8 horas x 5 días" }
+        ]
+      }
+    }
+  ]
+
+}
