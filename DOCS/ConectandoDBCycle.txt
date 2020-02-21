@@ -1,0 +1,14 @@
+npm start | nodemon
+
+node ./bin/www
+->  Levantar un Web Server 
+
+--> API que se conecta a un a Base de Datos
+
+---> Conectar a DB [Si OK] --> Levantar el Webserver --> 
+Levantar la Aplicacion 
+
+Inyectar la Dependencia 
+Inyectar la Conexion a la DB.....
+
+Dependency Inyection 
