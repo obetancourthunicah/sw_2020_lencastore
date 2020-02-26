@@ -22,7 +22,7 @@ function initApp(db){
   app.use(lessMiddleware(path.join(__dirname, 'public')));
   app.use(express.static(path.join(__dirname, 'public')));
 
-  var apiRouter = require('./routes/api/api');
+  var apiRouter = require('./routes/api/api')(db);
   var apiTest = require('./routes/api/test')(db);
   app.use('/', indexRouter);
   app.use('/api', apiRouter);
