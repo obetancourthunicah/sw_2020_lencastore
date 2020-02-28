@@ -42,5 +42,56 @@ module.exports = (db)=>{
     }); //insertOner
   }
 
+  seguridadModel.update = ( dataToUpdate , handler )=>{
+    var { _id, userpswd, usernames} = dataToUpdate;
+    var query = { "_id": new ObjectID(_id)};
+    var updateCommad = {
+      "$set":{
+        userPswd: userpswd,
+        userCompleteName: usernames,
+        lastUpdated: new Date().getTime()
+      },
+      "$inc" :{
+        "updates": 1
+      }
+    };
+    seguridadCollection.updateOne(
+      query,
+      updateCommad,
+      (err, rslt)=>{
+        if(err){
+          return handler(err, null);
+        }
+        return handler(null, rslt.result);
+      }
+    );// updateOne
+  }
+
+  seguridadModel.deleteByCode = (id, handler)=>{
+    var query = {"_id": new ObjectID(id)};
+    seguridadCollection.deleteOne(
+      query,
+      (err, rslt)=>{
+        if(err){
+          return handler(err, null);
+        }
+        return handler(null, rslt.result);
+      }
+    ); //deleteOne
+  }
+
+  seguridadModel.getById = (id, handler) => {
+    var query = { "_id": new ObjectID(id) };
+    seguridadCollection.findOne(
+      query,
+      (err, doc) => {
+        if (err) {
+          return handler(err, null);
+        }
+        return handler(null, doc);
+      }
+    ); //findOne
+  }
+
   return seguridadModel;
 }
