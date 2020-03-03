@@ -1,0 +1,31 @@
+Establecer un esquema de seguridad a la API 
+
+Backend API --  Serverless (no es sin server)
+
+-  Rutas Privadas
+Rutas que se ejecutan únicamente si 
+la petición es autenticada con credenciales
+válidas que autoricen la ejecución de la ruta.
+Notas:  NO PUEDEN MANTENER DATOS DE SESIÓN. 
+
+JWT  --- JSON web token. 
+    OAUTH1, OAUTH2  --> GMAIL, FACEBOOK, TWITTER, GITHUB
+
+Basckend Express.js Private How To:
+estrategia de autenticación: 
+passport 
+ -- basic - local | user, contraseña | R:5  (? Necesario)
+ -- oath2 -> gmail, facebook |  R:5+1
+ -- jwt | token R:1
+
+Implementar esas estrategias en un "midleware"
+  Midleware 
+  Requiero Una Ruta --> Midleware --> Ruta 
+
+  Solicitar un Token (local, oath) : jwt  
+  Demas peticiones Privadas van con jwt;
+
+-  Rutas Públicas
+Son todas aquellas rutas que no requieren 
+un mecanismo de autenticación o autorización
+para su ejecución. 
