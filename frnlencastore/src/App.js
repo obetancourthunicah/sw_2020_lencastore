@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import Header from './componentes/Header/Header';
-import Footer from './componentes/Footer/Footer';
-
+import Home from './componentes/Pages/Public/Home/Home';
+import Login from './componentes/Pages/Public/Login/Login';
 class App extends Component {
   constructor(){
     super();
@@ -27,9 +26,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <Header login={this.login}>{this.state.user.email || "Hola Mundo"}</Header>
-        <Footer>Pie de Página</Footer>
-        <Footer>Pie de Página 2</Footer>
+        <Login></Login>
       </div>
     );
   }
