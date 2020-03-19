@@ -1,7 +1,38 @@
-footer{
+footer {
   background-color: #000;
-  width:100vw;
-  color:#fff;
-  padding:1em;
-  font-size: 0.8em;
+  width: 100vw;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+nav {
+  width: 100vw;
+  padding: 0px;
+  margin: 0px;
+}
+nav ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav ul li {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+nav ul li a {
+  display: flex;
+  padding: 1em;
+  color: #fff;
+  text-decoration: none;
+  flex-direction: column;
+  justify-content: ceter;
+  align-items: center;
+}
+nav ul li a:hover{
+  background-color: #777;
 }

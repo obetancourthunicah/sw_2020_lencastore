@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {IoIosLogIn, IoIosHome} from 'react-icons/io';
+import { NavLink } from 'react-router-dom';
 import './Footer.css';
 
 export default class Footer extends Component{
@@ -18,8 +20,13 @@ export default class Footer extends Component{
   }
   render(){
     return (
-      <footer onClick={this.counterUpdate}>
-        {this.props.children} Clicks: {this.state.counter}
+      <footer>
+        <nav>
+         <ul>
+            <li><NavLink to="/"><IoIosHome />Home</NavLink></li>
+            <li><NavLink to="/login"><IoIosLogIn /> Login</NavLink></li>
+          </ul>
+        </nav>
       </footer>
     );
   }

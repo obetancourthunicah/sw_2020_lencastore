@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './componentes/Pages/Public/Home/Home';
 import Login from './componentes/Pages/Public/Login/Login';
 class App extends Component {
@@ -25,9 +26,12 @@ class App extends Component {
   }
   render(){
     return (
-      <div className="App">
-        <Login></Login>
-      </div>
+      <Router>
+        <div className="App">
+          <Route component={Home} path="/" exact />
+          <Route component={Login} path="/login" exact/>
+        </div>
+      </Router>
     );
   }
 }
