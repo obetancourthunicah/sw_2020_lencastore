@@ -3,6 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './componentes/Pages/Public/Home/Home';
 import Login from './componentes/Pages/Public/Login/Login';
+import Signin from './componentes/Pages/Public/SignIn/SignIn';
+
 class App extends Component {
   constructor(){
     super();
@@ -30,6 +32,7 @@ class App extends Component {
         <div className="App">
           <Route component={Home} path="/" exact />
           <Route component={Login} path="/login" exact/>
+          <Route component={Signin} path="/signin" exact />
         </div>
       </Router>
     );

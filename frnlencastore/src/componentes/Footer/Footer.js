@@ -25,6 +25,7 @@ export default class Footer extends Component{
          <ul>
             <li><NavLink to="/"><IoIosHome />Home</NavLink></li>
             <li><NavLink to="/login"><IoIosLogIn /> Login</NavLink></li>
+            <li><NavLink to="/signin"><IoIosLogIn /> SignIn</NavLink></li>
           </ul>
         </nav>
       </footer>

@@ -1,33 +1,33 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Page from '../../Page';
 import Field from '../../../Forms/Fields/Field';
-import {Actions} from '../../../Forms/Buttons/Button';
-import {emailRegex , emptyRegex} from '../../../Forms/Validators/Validators';
-export default class Login extends Component{
+import { Actions } from '../../../Forms/Buttons/Button';
+import { emailRegex, emptyRegex } from '../../../Forms/Validators/Validators';
+export default class Login extends Component {
   /*
   1) Capturar los eventos de los botones
   2) Repasar el evento para capturar los datos del formulario
   3) Validaciones de Datos y como desplegarlo en el componente
   4) Usar axios para llegar al API. 
    */
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      email:'',
-      emailError:null,
-      password:'',
-      passwordError:null
+      email: '',
+      emailError: null,
+      password: '',
+      passwordError: null
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onClickLogin = this.onClickLogin.bind(this);
     this.onClickCreateAccount = this.onClickCreateAccount.bind(this);
     this.validate = this.validate.bind(this);
   }
-  validate(state){
+  validate(state) {
     let nameErrors = null;
     let tmpErrors = [];
-    const {email, password} = state;
-    if(email !== undefined){
+    const { email, password } = state;
+    if (email !== undefined) {
       if (!emailRegex.test(email)) {
         tmpErrors.push("El correo debe tener formato correcto");
       }
@@ -35,10 +35,10 @@ export default class Login extends Component{
         tmpErrors.push("Debe Ingresar Correo Adecuado");
       }
       if (tmpErrors.length) {
-        nameErrors = Object.assign({},nameErrors, {emailError:tmpErrors.join('. ')});
+        nameErrors = Object.assign({}, nameErrors, { emailError: tmpErrors.join('. ') });
       }
     }
-    if (password !== undefined){
+    if (password !== undefined) {
       tmpErrors = [];
       if ((emptyRegex.test(password))) {
         tmpErrors.push("Debe Ingresar Contraseña Adecuado");
@@ -47,41 +47,41 @@ export default class Login extends Component{
         nameErrors = Object.assign({}, nameErrors, { passwordError: tmpErrors.join('. ') });
       }
     }
-      return nameErrors;
+    return nameErrors;
   }
-  onChangeHandler(e){
-    const  {name, value} = e.currentTarget;
+  onChangeHandler(e) {
+    const { name, value } = e.currentTarget;
     // Aqui puedo validar datos y establecer elementos de error.
-    let errors = this.validate({[name]:value});
-    if (!errors){
-      errors = {[name+"Error"]:''};
+    let errors = this.validate({ [name]: value });
+    if (!errors) {
+      errors = { [name + "Error"]: '' };
     }
     this.setState({
       ...this.state,
-      [name]:value,
+      [name]: value,
       ...errors
     });
   }
-  onClickLogin(e){
+  onClickLogin(e) {
     e.preventDefault();
     e.stopPropagation();
     //Validaciones
     const errors = this.validate(this.state);
-    if(errors){
-      this.setState({...this.state, ...errors});
+    if (errors) {
+      this.setState({ ...this.state, ...errors });
     } else {
-        //Aplicar Axios
-        alert("Todo Cool");
+      //Aplicar Axios
+      alert("Todo Cool");
     }
   }
-  onClickCreateAccount(e){
+  onClickCreateAccount(e) {
     e.preventDefault();
     e.stopPropagation();
     alert("Click en Crear Cuenta");
   }
-  render(){
+  render() {
     return (
-      <Page pageTitle="Iniciar">
+      <Page pageTitle="Nueva Cuenta">
         <Field
           name="email"
           caption="Correo"
@@ -99,8 +99,8 @@ export default class Login extends Component{
           error={this.state.passwordError}
         />
         <Actions>
-          <button onClick={this.onClickLogin}>Iniciar Sesión</button>
           <button onClick={this.onClickCreateAccount}>Crear Cuenta</button>
+          <button onClick={this.onClickLogin}>Iniciar Sesión</button>
         </Actions>
       </Page>
     );
