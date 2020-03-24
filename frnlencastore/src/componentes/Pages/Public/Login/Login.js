@@ -3,6 +3,8 @@ import Page from '../../Page';
 import Field from '../../../Forms/Fields/Field';
 import {Actions} from '../../../Forms/Buttons/Button';
 import {emailRegex , emptyRegex} from '../../../Forms/Validators/Validators';
+
+import {paxios, setLocalStorage} from '../../../Utilities/Utilities';
 export default class Login extends Component{
   /*
   1) Capturar los eventos de los botones
@@ -71,7 +73,23 @@ export default class Login extends Component{
       this.setState({...this.state, ...errors});
     } else {
         //Aplicar Axios
-        alert("Todo Cool");
+       // alert(JSON.stringify(this.state));
+        const {email, password} = this.state;
+        paxios.post(
+          "/api/seguridad/login",
+          {
+            userEmail: email,
+            userPswd: password
+          }
+        )
+        .then((resp)=>{
+          console.log(resp.data);
+          // Componente de Orden Superior los Datos del Usuario
+          setLocalStorage('jwt',resp.data.jwt);
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
     }
   }
   onClickCreateAccount(e){

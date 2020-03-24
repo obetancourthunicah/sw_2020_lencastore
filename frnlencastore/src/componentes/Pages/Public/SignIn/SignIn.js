@@ -3,6 +3,8 @@ import Page from '../../Page';
 import Field from '../../../Forms/Fields/Field';
 import { Actions } from '../../../Forms/Buttons/Button';
 import { emailRegex, emptyRegex } from '../../../Forms/Validators/Validators';
+
+import {paxios} from '../../../Utilities/Utilities';
 export default class Login extends Component {
   /*
   1) Capturar los eventos de los botones
@@ -13,6 +15,8 @@ export default class Login extends Component {
   constructor() {
     super();
     this.state = {
+      userName: '',
+      userNameError:null,
       email: '',
       emailError: null,
       password: '',
@@ -62,7 +66,7 @@ export default class Login extends Component {
       ...errors
     });
   }
-  onClickLogin(e) {
+  onClickCreateAccount(e) {
     e.preventDefault();
     e.stopPropagation();
     //Validaciones
@@ -71,17 +75,39 @@ export default class Login extends Component {
       this.setState({ ...this.state, ...errors });
     } else {
       //Aplicar Axios
-      alert("Todo Cool");
+      const { email, password , userName} = this.state;
+      paxios.post(
+        "/api/seguridad/users/new",
+        {
+          useremail: email,
+          userpswd: password,
+          usernames: userName
+        }
+      )
+        .then((resp) => {
+          console.log(resp);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     }
   }
-  onClickCreateAccount(e) {
+  onClickLogin(e) {
     e.preventDefault();
     e.stopPropagation();
-    alert("Click en Crear Cuenta");
+    alert("Click en Login");
   }
   render() {
     return (
       <Page pageTitle="Nueva Cuenta">
+        <Field
+          name="userName"
+          caption="Nombre Completo"
+          value={this.state.userName}
+          type="text"
+          onChange={this.onChangeHandler}
+          error={this.state.userNameError}
+        />
         <Field
           name="email"
           caption="Correo"
