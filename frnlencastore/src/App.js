@@ -1,38 +1,60 @@
 import React, {Component} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import  PrivateRoute  from './componentes/SecureRoutes/SecureRoute';
+import { setJWTBearer, setLocalStorage, getLocalStorage } from './componentes/Utilities/Utilities';
+
 import Home from './componentes/Pages/Public/Home/Home';
 import Login from './componentes/Pages/Public/Login/Login';
 import Signin from './componentes/Pages/Public/SignIn/SignIn';
+
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      user:{},
+      user: getLocalStorage('user')||{},
+      jwt: getLocalStorage('jwt') || '',
       isLogged:false,
       loadingBackend:false
     };
-
+    if(this.state.jwt !== ''){
+      this.state.isLogged = true;
+    }
+    
     this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
-  login(e, user){
-    const { email, id , roles} = user;
+  login(user){
+    const {jwt, ...fuser} = user;
     this.setState({
         ...this.state,
         isLogged:true,
         loadingBackend:false,
-        user:user
+        user:fuser,
+        jwt: jwt,
       });
-    alert(JSON.stringify(this.state));
+    setJWTBearer(jwt);
+    setLocalStorage('jwt', jwt);
+    setLocalStorage('user', fuser);
+  }
+  logout(){
+
   }
   render(){
+    const auth = {
+      isLogged: this.state.isLogged,
+      user: this.state.user,
+      logout: this.logout,
+     }
+     console.log(auth);
     return (
       <Router>
         <div className="App">
-          <Route component={Home} path="/" exact />
-          <Route component={Login} path="/login" exact/>
-          <Route component={Signin} path="/signin" exact />
+          <Route render={(props) => { return (<Home {...props} auth={auth} />) }} path="/" exact />
+          <Route render={(props)=>{return (<Login {...props} auth={auth} login={this.login} />)}} path="/login" exact/>
+          <Route render={(props) => { return (<Signin {...props} auth={auth}/>) }} path="/signin" exact />
+          <PrivateRoute component={Home} path="/privatehome" exact auth={auth} />
         </div>
       </Router>
     );

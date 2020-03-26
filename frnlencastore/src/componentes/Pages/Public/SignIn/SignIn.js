@@ -99,7 +99,7 @@ export default class Login extends Component {
   }
   render() {
     return (
-      <Page pageTitle="Nueva Cuenta">
+      <Page pageTitle="Nueva Cuenta" auth={this.props.auth}>
         <Field
           name="userName"
           caption="Nombre Completo"

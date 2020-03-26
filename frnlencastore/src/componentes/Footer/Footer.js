@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {IoIosLogIn, IoIosHome} from 'react-icons/io';
+import {IoIosLogIn, IoIosHome, IoIosFolder} from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
 import './Footer.css';
 
@@ -19,17 +19,35 @@ export default class Footer extends Component{
     this.setState({counter:this.state.counter+1});
   }
   render(){
-    return (
-      <footer>
-        <nav>
-         <ul>
-            <li><NavLink to="/"><IoIosHome />Home</NavLink></li>
-            <li><NavLink to="/login"><IoIosLogIn /> Login</NavLink></li>
-            <li><NavLink to="/signin"><IoIosLogIn /> SignIn</NavLink></li>
-          </ul>
-        </nav>
-      </footer>
-    );
+    if (this.props.hide && true){
+      return null;
+    }
+    if (this.props.auth && this.props.auth.isLogged && true){
+      return (
+        <footer>
+          <nav>
+            <ul>
+              <li><NavLink to="/"><IoIosHome />Home</NavLink></li>
+              <li><NavLink to="/login"><IoIosFolder /> Products</NavLink></li>
+              <li><NavLink to="/signin"><IoIosLogIn /> Orders</NavLink></li>
+              <li><NavLink to="/signin"><IoIosLogIn /> Stores</NavLink></li>
+            </ul>
+          </nav>
+        </footer>
+      );
+    } else {
+      return (
+        <footer>
+          <nav>
+            <ul>
+              <li><NavLink to="/"><IoIosHome />Home</NavLink></li>
+              <li><NavLink to="/login"><IoIosLogIn /> Login</NavLink></li>
+              <li><NavLink to="/signin"><IoIosLogIn /> SignIn</NavLink></li>
+            </ul>
+          </nav>
+        </footer>
+      );
+    }
   }
 }
 

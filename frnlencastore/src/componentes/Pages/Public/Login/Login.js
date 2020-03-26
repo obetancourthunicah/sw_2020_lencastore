@@ -73,7 +73,7 @@ export default class Login extends Component{
       this.setState({...this.state, ...errors});
     } else {
         //Aplicar Axios
-       // alert(JSON.stringify(this.state));
+        alert(JSON.stringify(this.state));
         const {email, password} = this.state;
         paxios.post(
           "/api/seguridad/login",
@@ -85,7 +85,7 @@ export default class Login extends Component{
         .then((resp)=>{
           console.log(resp.data);
           // Componente de Orden Superior los Datos del Usuario
-          setLocalStorage('jwt',resp.data.jwt);
+          this.props.login(resp.data);
         })
         .catch((error)=>{
           console.log(error);
@@ -99,7 +99,7 @@ export default class Login extends Component{
   }
   render(){
     return (
-      <Page pageTitle="Iniciar">
+      <Page pageTitle="Iniciar" auth={this.props.auth}>
         <Field
           name="email"
           caption="Correo"
