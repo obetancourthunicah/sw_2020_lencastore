@@ -5,6 +5,7 @@ import {Actions} from '../../../Forms/Buttons/Button';
 import {emailRegex , emptyRegex} from '../../../Forms/Validators/Validators';
 
 import {paxios, setLocalStorage} from '../../../Utilities/Utilities';
+import {Redirect} from 'react-router-dom';
 export default class Login extends Component{
   /*
   1) Capturar los eventos de los botones
@@ -18,7 +19,8 @@ export default class Login extends Component{
       email:'',
       emailError:null,
       password:'',
-      passwordError:null
+      passwordError:null,
+      redirecTo:false
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onClickLogin = this.onClickLogin.bind(this);
@@ -86,6 +88,7 @@ export default class Login extends Component{
           console.log(resp.data);
           // Componente de Orden Superior los Datos del Usuario
           this.props.login(resp.data);
+          this.setState({...this.state, redirecTo: true })
         })
         .catch((error)=>{
           console.log(error);
@@ -98,6 +101,10 @@ export default class Login extends Component{
     alert("Click en Crear Cuenta");
   }
   render(){
+    if (this.state.redirecTo){
+      const redirect = (this.props.location.state) ? this.props.location.state.from.pathname : '/';
+      return (<Redirect to={redirect} />);
+    }
     return (
       <Page pageTitle="Iniciar" auth={this.props.auth}>
         <Field

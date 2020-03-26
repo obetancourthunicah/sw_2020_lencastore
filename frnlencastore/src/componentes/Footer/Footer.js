@@ -12,11 +12,17 @@ export default class Footer extends Component{
     //Cualquier propio que ocupemos en una clase requiere
     // realizar el bind para poder acceder al estado y al api del componente.
     this.counterUpdate = this.counterUpdate.bind(this);
+    this.logoutOnClick = this.logoutOnClick.bind(this);
   }
   counterUpdate(e){
     e.preventDefault();
     e.stopPropagation();
     this.setState({counter:this.state.counter+1});
+  }
+  logoutOnClick(e){
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.auth.logout();
   }
   render(){
     if (this.props.hide && true){
@@ -28,9 +34,9 @@ export default class Footer extends Component{
           <nav>
             <ul>
               <li><NavLink to="/"><IoIosHome />Home</NavLink></li>
-              <li><NavLink to="/login"><IoIosFolder /> Products</NavLink></li>
+              <li><NavLink to="/productos"><IoIosFolder /> Products</NavLink></li>
               <li><NavLink to="/signin"><IoIosLogIn /> Orders</NavLink></li>
-              <li><NavLink to="/signin"><IoIosLogIn /> Stores</NavLink></li>
+              <li><a onClick={this.logoutOnClick}><IoIosLogIn /> Logout</a></li>
             </ul>
           </nav>
         </footer>

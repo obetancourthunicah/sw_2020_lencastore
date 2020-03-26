@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import  PrivateRoute  from './componentes/SecureRoutes/SecureRoute';
-import { setJWTBearer, setLocalStorage, getLocalStorage } from './componentes/Utilities/Utilities';
+import { setJWTBearer, setLocalStorage, getLocalStorage, removeLocalStorage } from './componentes/Utilities/Utilities';
 
 import Home from './componentes/Pages/Public/Home/Home';
 import Login from './componentes/Pages/Public/Login/Login';
 import Signin from './componentes/Pages/Public/SignIn/SignIn';
+
+import ProductList from './componentes/Pages/Private/Products/ProductList';
 
 
 class App extends Component {
@@ -39,7 +41,16 @@ class App extends Component {
     setLocalStorage('user', fuser);
   }
   logout(){
-
+    removeLocalStorage('jwt');
+    removeLocalStorage('user');
+    this.setState({
+        ...this.state,
+        isLogged: false,
+        loadingBackend: false,
+        user: {},
+        jwt: ''
+      }
+    )
   }
   render(){
     const auth = {
@@ -55,6 +66,7 @@ class App extends Component {
           <Route render={(props)=>{return (<Login {...props} auth={auth} login={this.login} />)}} path="/login" exact/>
           <Route render={(props) => { return (<Signin {...props} auth={auth}/>) }} path="/signin" exact />
           <PrivateRoute component={Home} path="/privatehome" exact auth={auth} />
+          <PrivateRoute component={ProductList} path="/productos" exact auth={auth} />
         </div>
       </Router>
     );
