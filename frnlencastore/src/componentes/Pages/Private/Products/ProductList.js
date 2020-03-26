@@ -12,6 +12,19 @@ export default class ProductList extends Component{
       loading:false,
     }
   }
+  componentDidMount(){
+    //cargar los productos
+    saxios.get(
+      "/api/version"
+    )
+    .then((resp)=>{
+      console.log(resp.data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+
+  }
   render(){
     return (
       <Page pageTitle="Productos" auth={this.props.auth}>

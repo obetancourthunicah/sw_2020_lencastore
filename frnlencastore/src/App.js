@@ -22,6 +22,7 @@ class App extends Component {
     };
     if(this.state.jwt !== ''){
       this.state.isLogged = true;
+      setJWTBearer(this.state.jwt);
     }
     
     this.login = this.login.bind(this);
