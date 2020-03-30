@@ -19,7 +19,6 @@ passport.use(
       secretOrKey:'cuandoLosGatosNoEstanFiestanlosRatonesHacen'
     },
     (payload, next)=>{
-        console.log(payload);
         var user = payload;
         return next(null, user);
     }
@@ -31,16 +30,22 @@ function initApi(db){
 
     /// Routers de Entidades
     var seguridadRouter = require('./seguridad/seguridad')(db);
-
+    var artesanosRouter = require('./artesanos/artersanos')(db);
+    var clientesRouter = require('./clients/clients')(db);
 
     router.use('/seguridad', seguridadRouter);
     var jwtAuthMiddleware = passport.authenticate('jwt',{session:false});
 
+
+    router.use('/artesanos', jwtAuthMiddleware, artesanosRouter);
+    router.use('/clientes', jwtAuthMiddleware, clientesRouter);
+
     // http://localhost:3000/api/version
   router.get('/version', jwtAuthMiddleware, function(req, res){
-      res.status(200).json({"version":"API v1.0"});
-    } );
- return router;
+        console.log(req.user);
+        res.status(200).json({"version":"API v1.0"});
+      } );
+    return router;
 }
 //module.exports = router;
 module.exports = initApi;
