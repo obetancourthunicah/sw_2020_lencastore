@@ -1,0 +1,27 @@
+.list {
+  height: calc(100vh - 123px);
+  padding: 0px;
+  overflow: auto;
+  margin-top: -1rem;
+}
+.listItem {
+  display: flex;
+  box-sizing: 1px;
+  padding: 1rem;
+  border-bottom: 1px solid #000;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.listItem span:first-child {
+  padding-right: 1.5rem;
+}
+.center {
+  justify-content: center;
+}
+.addItem a {
+  color: #fff;
+}
+.updateListItem a {
+  color: #3e549c;
+}
