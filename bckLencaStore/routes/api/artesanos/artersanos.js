@@ -4,6 +4,17 @@ var router = express.Router();
 function artesanosInit(db) {
   var prdModel = require("../productsModel/products.model")(db);
 
+  router.get('/products/find/:id', (req, res) => {
+    var { id: _id } = req.params;
+    var id = _id || '';
+    prdModel.getProductById(id, (err, doc) => {
+      if (err) {
+        return res.status(500).json({});
+      }
+      return res.status(200).json(doc);
+    })
+  })
+
   router.get('/products/:page/:items', (req, res)=>{
       var {page, items} = req.params;
       prdModel.getProductByOwner(
@@ -50,6 +61,8 @@ function artesanosInit(db) {
       }
     );
   });
+
+
 
   router.put('/products/stock/:id' , (req, res)=>{
       var { stock : _stockDelta } = req.body;
