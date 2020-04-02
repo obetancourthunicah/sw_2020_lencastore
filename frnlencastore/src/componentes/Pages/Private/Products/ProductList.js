@@ -1,6 +1,6 @@
 import  React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
-import { IoIosInformationCircleOutline, IoIosSync, IoMdAddCircle } from 'react-icons/io';
+import { IoIosInformationCircleOutline, IoIosSync, IoMdAddCircle, IoIosImage } from 'react-icons/io';
 import {Link} from 'react-router-dom';
 
 import Page from '../../Page';
@@ -52,8 +52,11 @@ export default class Products extends Component {
         <div className='listItem' key={item._id}>
           <span>{item.sku} {item.name}</span>
           <span className='updateListItem'>
-            <Link to={`/detailChangeThis/${item._id}`}>
+            <Link to={`/producto/${item._id}`}>
               <IoIosInformationCircleOutline size='2em'/>
+            </Link>
+            <Link to={`/producto/img/${item._id}`}>
+              <IoIosImage size='2em' />
             </Link>
           </span>
         </div>);
@@ -67,7 +70,7 @@ export default class Products extends Component {
     </div>);
 
   return (
-    <Page title="My List Change This" auth={this.props.auth}>
+    <Page pageTitle="Productos" auth={this.props.auth}>
       <div className="list" ref={(ref)=> this.scrollParentRef = ref}>
           <InfiniteScroll
             pageStart={0}
@@ -81,7 +84,7 @@ export default class Products extends Component {
               {uiItems}
           </InfiniteScroll>
       </div>
-     </Page>
+    </Page>
    );
   }
 }

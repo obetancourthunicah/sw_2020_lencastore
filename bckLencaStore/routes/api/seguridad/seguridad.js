@@ -96,13 +96,15 @@ router.post('/login', (req, res)=>{
       console.log(err);
       return res.status(400).json({"msg":"Credencales no pueden ser validadas"});
     }
-    if (userModel.comparePswd(user.userPswd, userPswd)){
-      delete user.userPswd;
-      var token =  jwt.sign(user,
-      'cuandoLosGatosNoEstanFiestanlosRatonesHacen',
-      {expiresIn:'60m'}
-      )
-      return res.status(200).json({"user":user, "jwt":token});
+    if(user){
+      if (userModel.comparePswd(user.userPswd, userPswd)){
+        delete user.userPswd;
+        var token =  jwt.sign(user,
+        'cuandoLosGatosNoEstanFiestanlosRatonesHacen',
+        {expiresIn:'60m'}
+        )
+        return res.status(200).json({"user":user, "jwt":token});
+      }
     }
     console.log({ userEmail, userPswd, ...{ "msg":"No Coincide Pswds"}});
     return res.status(400).json({ "msg": "Credencales no pueden ser validadas" });

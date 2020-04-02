@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "prod_unx": "production=true node ./bin/www",
+    "prod_win": "set production=true node ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",

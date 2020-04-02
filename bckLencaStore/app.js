@@ -24,7 +24,7 @@ function initApp(db){
 
   var apiRouter = require('./routes/api/api')(db);
   var apiTest = require('./routes/api/test')(db);
-  app.use('/', indexRouter);
+  // app.use('/', indexRouter);
   app.use('/api', apiRouter);
   app.use('/test', apiTest);
 

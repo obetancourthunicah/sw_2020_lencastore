@@ -1,0 +1,7 @@
+.detailitem{
+  display: flex;
+  padding:1em 0.5em;
+}
+.detailimg{
+  width:100%;
+}

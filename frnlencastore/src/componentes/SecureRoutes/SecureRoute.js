@@ -5,7 +5,7 @@ export default ({component:CustomComponent, auth, ...rest})=>{
     return(
       <Route
         {...rest}
-        render={
+        component={
           (props)=>{
             return (
                 (auth.isLogged) ?

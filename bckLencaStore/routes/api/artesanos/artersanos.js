@@ -108,6 +108,22 @@ function artesanosInit(db) {
     );
   });
 
+  router.put('/products/updimg/:id', (req, res) => {
+    var { imageurl } = req.body;
+    var updateCurated = {};
+    updateCurated["imgUrl"] = imageurl;
+    prdModel.updateProduct(
+      req.params.id,
+      updateCurated,
+      (err, rslt) => {
+        if (err) {
+          return res.status(500).json({});
+        }
+        return res.status(200).json(rslt);
+      }
+    );
+  });
+
   router.put('/products/del/:id', (req, res) => {
     prdModel.updateProduct(
       req.params.id,
